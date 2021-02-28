@@ -1,5 +1,5 @@
 # Import global variables and databases.
-from definitions import botname, botowner, activity, post, priv
+from definitions import botname, botowner, activity, post, priv, db
 
 # Imports, database definitions and all that kerfuffle.
 
