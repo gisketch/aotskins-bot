@@ -128,16 +128,20 @@ class Reaction(commands.Cog):
 	#         AUTOVOTE LOGIC
 	# -------------------------------
 	@commands.Cog.listener()
-	async def on_message(ctx, message):
-		if not message.author.bot and not isinstance(message.channel, discord.channel.DMChannel):
-			pre = customprefix.search(Query().server == message.guild.id)
-			if pre and not message.content.startswith(pre[0]['prefix']) or not pre and not message.content.startswith('?') : # shouldn't invoke commands
-				result = chan.get(Query()['server'] == message.guild.id)
-				if (result and (result['serverwide'] == True or message.channel.id in result['channels'])):
-					plus = discord.utils.get(message.guild.emojis, name="plus")
-					minus = discord.utils.get(message.guild.emojis, name="minus")
-					await message.add_reaction(plus)
-					await message.add_reaction(minus)
+    async def on_message(ctx, message):
+        if not message.author.bot and not isinstance(message.channel, discord.channel.DMChannel):
+            pre = customprefix.search(Query().server == message.guild.id)
+            if pre and not message.content.startswith(pre[0]['prefix']) or not pre and not message.content.startswith('?') : # shouldn't invoke commands
+                result = chan.get(Query()['server'] == message.guild.id)
+                if (result and (result['serverwide'] == True or message.channel.id in result['channels'])):
+                    # This should only work with images. (HOTFIX)
+                    pic_ext = ['.jpg','.png','.jpeg']
+                    for ext in pic_ext:
+                        if (message.attachments or message.content.endswith(ext)):
+                            plus = discord.utils.get(message.guild.emojis, name="plus")
+                            minus = discord.utils.get(message.guild.emojis, name="minus")
+                            await message.add_reaction(plus)
+                            await message.add_reaction(minus)
 
 
 
