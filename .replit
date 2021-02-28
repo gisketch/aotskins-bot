@@ -1,2 +1,2 @@
 language = "python3"
-run = "python reto.py"
+run = "pip install discord.py pyfiglet tinydb aiofiles tinydb-encrypted-jsonstorage"
