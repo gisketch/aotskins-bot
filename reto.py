@@ -162,4 +162,5 @@ async def statusupdates():
 		await bot.change_presence(activity=game)	
 
 keep_alive()
-bot.run("ODE1NTg2NjY4NTc2NTA1ODU3."+"YDukRg.wO3ynN3zSJHaO2WkoPyo0iTONEk")
+token = os.environ.get("DISCORD_BOT_SECRET")
+bot.run(token)
