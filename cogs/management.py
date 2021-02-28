@@ -81,6 +81,63 @@ class Management(commands.Cog):
 		else:
 			await sendErrorEmbed(ctx, "Looks like you don't have permission to do this?\n_Are you hosting " + botname + "? If so make sure your User ID is on the **botowner** array on the config.json file!_")
 	
+	@commands.command(aliases=['editkarma', 'karmaedit'])
+	async def rosebud(self,ctx,*args):
+		"""[BOT ADMIN ONLY] Add or subtract karma from an user."""
+
+		prefix = await getCurrentPrefix(ctx)
+		isOwner = False
+		for x in botowner:
+			if (int(ctx.message.author.id) == int(x)):
+				isOwner = True
+
+		if isOwner:
+			if not args:
+				await sendErrorEmbed(ctx, "Hey! You should probably tag someone first.\nIntended usage: " + prefix + "rosebud `[user]` `[amount of karma]` `[add/subtract]`")
+				return
+			if not ctx.message.mentions:
+				await sendErrorEmbed(ctx, "You forgot to add in an user!")
+				return
+			else:
+				user = ctx.message.mentions[0]
+				if len(args) < 2:
+					await sendErrorEmbed(ctx, "You haven't entered a karma amount!")
+					return
+				if args[1].isdigit():
+					karma = int(args[1])
+					value = ""
+					if len(args) < 3:
+						await sendErrorEmbed(ctx, "You have to enter an argument! `[add/subtract]`")
+						return	
+					if args[2] == "add":
+						value = "add"
+					elif args[2] == "subtract":
+						value = "subtract"
+					else:
+						await sendErrorEmbed(ctx, "That's not a valid argument! `[add/subtract]`")
+						return
+					if args[2] and value:
+						# DO THE THING
+						exists = db.count(Query().username == user.id)
+						server = str(ctx.message.guild.id)
+						if exists == 0:
+							if value == "add":
+								db.insert({'username': user.id, 'points': karma, 'servers': [server]})
+							if value == "subtract":
+								db.insert({'username': user.id, 'points': -karma, 'servers': [server]})
+						else:
+							if value == "add":
+								db.update(add('points',karma), where('username') == user.id)
+							if value == "subtract":
+								db.update(subtract('points',karma), where('username') == user.id)
+						result = db.get(Query()['username'] == user.id)
+						await ctx.send('Great! ' + user.name + "'s new karma total is " + str(result.get('points')) + ".")
+				else:
+					await sendErrorEmbed(ctx, "That's not a valid amount of karma!")
+					return
+		else:
+			await sendErrorEmbed(ctx, "Looks like you don't have permission to do this?\n_Are you hosting " + botname + "? If so make sure your User ID is on the **botowner** array on the config.json file!_")
+
 	#-------------------------
 	#      POST DELETER
 	#-------------------------
@@ -127,6 +184,7 @@ async def showActivityList(ctx):
 	embed = discord.Embed(title="List of Activities", colour=discord.Colour(0xa353a9), description=s)
 	embed.set_footer(text="Add more with " + prefix + "activity create '[text]', or remove one with " + prefix + "activity delete [id].")
 	return embed
+
 			
 def setup(client):
 	client.add_cog(Management(client))
