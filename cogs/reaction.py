@@ -135,7 +135,7 @@ class Reaction(commands.Cog):
 				result = chan.get(Query()['server'] == message.guild.id)
 				if (result and (result['serverwide'] == True or message.channel.id in result['channels'])):
 					# This should only work with images. (HOTFIX)
-					pic_ext = ['.jpg','.png','.jpeg']
+					pic_ext = ['.jpg','.png','.jpeg','.txt']
 					for ext in pic_ext:
 						if (message.attachments or message.content.endswith(ext)):
 							plus = discord.utils.get(message.guild.emojis, name="plus")
