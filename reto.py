@@ -1,6 +1,8 @@
 # Import global variables and databases.
 from definitions import bottoken, botname, botver, prefix, debug, db, srv, activity, customprefix
 
+from keep_alive import keep_alive
+
 # Imports, database definitions and all that kerfuffle.
 
 import discord
@@ -159,4 +161,5 @@ async def statusupdates():
 			game = discord.Game(botactivity[random.randrange(len(botactivity))])
 		await bot.change_presence(activity=game)	
 
+keep_alive()
 bot.run("ODE1NTg2NjY4NTc2NTA1ODU3."+"YDukRg.wO3ynN3zSJHaO2WkoPyo0iTONEk")
