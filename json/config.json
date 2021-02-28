@@ -1,0 +1,14 @@
+{
+  "_default": {
+    "1": {
+      "key": "aotskinsreto",
+      "bottoken": "ODE1NTg2NjY4NTc2NTA1ODU3.YDukRg.cXYuY8w0zCXZeSNFTq_ZCkZQous",
+      "botname": "aotskins",
+      "prefix": ".",
+      "support": "https://discord.gg/rrszpTN",
+      "botver": "1.6",
+      "botowner": ["712437132240617572"],
+      "debug": "False"
+    }
+  }
+}
