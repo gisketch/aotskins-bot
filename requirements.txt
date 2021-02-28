@@ -1,0 +1,5 @@
+discord.py
+pyfiglet
+tinydb
+aiofiles
+tinydb-encrypted-jsonstorage
