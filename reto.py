@@ -159,4 +159,4 @@ async def statusupdates():
 			game = discord.Game(botactivity[random.randrange(len(botactivity))])
 		await bot.change_presence(activity=game)	
 
-bot.run("ODE1NTg2NjY4NTc2NTA1ODU3."+"YDukRg.cXYuY8w0zCXZeSNFTq_ZCkZQous")
+bot.run("ODE1NTg2NjY4NTc2NTA1ODU3."+"YDukRg.wO3ynN3zSJHaO2WkoPyo0iTONEk")
