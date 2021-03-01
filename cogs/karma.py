@@ -109,6 +109,56 @@ class Karma(commands.Cog):
 		for x in result: # For each entry in the database:
 			leaderboard[x.get("username")] = int(x.get("points")) # ...save the user's ID and its amount of points in a new Python database.
 		leaderboard = sorted(leaderboard.items(), key = lambda x : x[1], reverse=True) # Sort this database by amount of points.
+		s = "Top artists sorted by most thanks received.\n\n"
+		i = 0
+		for key, value in leaderboard: # For each value in the new, sorted DB:
+			if not args:
+				if i != 10:
+					user = self.client.get_user(key)
+					if not user:
+						user = await self.client.fetch_user(key)
+						print("User not found. Trying to fetch it...")
+					if i==0:
+						s += ("🥇 #" + str(i+1) + " - " + str(user) + " - " + str(value) +" thanks\n")
+					elif i==1:
+						s += ("🥈 #" + str(i+1) + " - "  + str(user) + " - " + str(value) +" thanks\n")
+					elif i==2:
+						s += ("🥉 #" + str(i+1) + " - "  + str(user) + " - " + str(value) +" thanks\n")
+					else:
+						s += ("🎨 #" + str(i+1) + " - "  + str(user) + " - " + str(value) +" thanks\n")
+					i = i+1
+			elif args[0] == "all":
+				user = self.client.get_user(key)
+				if not user:
+					user = await self.client.fetch_user(key)
+					print("User not found. Trying to fetch it...")
+				if i==0:
+					s += ("🥇 #" + str(i+1) + " - " + str(user) + " - " + str(value) +" thanks\n")
+				elif i==1:
+					s += ("🥈 #" + str(i+1) + " - "  + str(user) + " - " + str(value) +" thanks\n")
+				elif i==2:
+					s += ("🥉 #" + str(i+1) + " - "  + str(user) + " - " + str(value) +" thanks\n")
+				else:
+					s += ("🎨 #" + str(i+1) + " - "  + str(user) + " - " + str(value) +" thanks\n")
+				i = i+1
+		embed = discord.Embed(title="AOTSKINS Leaderboard", colour=discord.Colour(0xa353a9), description=s)
+		glb = await ctx.send(embed=embed)
+
+	# --------------------------
+	#	    ?LEADERBOARD TOP 50 PERIODIC
+	# --------------------------
+	
+	@commands.command(aliases=['lb50'], description="Check the top 10 users of your server! May take a while to load.\nYour username/score isn't showing up on the leaderboards? Update 1.2.1 made it so servers you're in and your score are joined together. This will refresh the next time someone hearts/crushs/stars one of your comments.")
+	async def lboard(self, ctx, *args):
+		"""Check this server's users with the most karma."""
+		db.clear_cache()
+		User = Query()
+		server = str(ctx.message.guild.id)
+		result = db.search(User.servers.all([server])) # doesnt work
+		leaderboard = {} # Prepares an empty dictionary.
+		for x in result: # For each entry in the database:
+			leaderboard[x.get("username")] = int(x.get("points")) # ...save the user's ID and its amount of points in a new Python database.
+		leaderboard = sorted(leaderboard.items(), key = lambda x : x[1], reverse=True) # Sort this database by amount of points.
 		s = "Top 50 artists sorted by most thanks received.\n\n"
 		i = 0
 		for key, value in leaderboard: # For each value in the new, sorted DB:
@@ -142,7 +192,9 @@ class Karma(commands.Cog):
 					s += ("🎨 #" + str(i+1) + " - "  + str(user) + " - " + str(value) +" thanks\n")
 				i = i+1
 		embed = discord.Embed(title="AOTSKINS' Top 50 Artists", colour=discord.Colour(0xa353a9), description=s)
-		glb = await ctx.send(embed=embed)
+
+		channel = discord.utils.get(ctx.message.guild.text_channels, name="best-of")
+		glb = await channel.send(embed=embed)
 		
 	# ---------------------------------
 	#	    ?GPLB (GLOBAL POST LB)
