@@ -194,7 +194,8 @@ class Karma(commands.Cog):
 		embed = discord.Embed(title="AOTSKINS' Top 50 Artists", colour=discord.Colour(0xa353a9), description=s)
 
 		channel = discord.utils.get(ctx.message.guild.text_channels, name="top-50")
-		glb = await channel.send(embed=embed)
+		lbMessage = await channel.fetch_message(815960589125287966)
+		glb = await lbMessage.edit(embed=embed)
 		
 	# ---------------------------------
 	#	    ?GPLB (GLOBAL POST LB)
