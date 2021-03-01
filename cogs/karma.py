@@ -159,7 +159,7 @@ class Karma(commands.Cog):
 		for x in result: # For each entry in the database:
 			leaderboard[x.get("username")] = int(x.get("points")) # ...save the user's ID and its amount of points in a new Python database.
 		leaderboard = sorted(leaderboard.items(), key = lambda x : x[1], reverse=True) # Sort this database by amount of points.
-		s = "Top 50 artists sorted by most thanks received.\n\n"
+		s = "Top 50 artists sorted by most thanks received. This message is updated every hour.\n\n"
 		i = 0
 		for key, value in leaderboard: # For each value in the new, sorted DB:
 			if not args:
@@ -193,7 +193,7 @@ class Karma(commands.Cog):
 				i = i+1
 		embed = discord.Embed(title="AOTSKINS' Top 50 Artists", colour=discord.Colour(0xa353a9), description=s)
 
-		channel = discord.utils.get(ctx.message.guild.text_channels, name="best-of")
+		channel = discord.utils.get(ctx.message.guild.text_channels, name="top-50")
 		glb = await channel.send(embed=embed)
 		
 	# ---------------------------------

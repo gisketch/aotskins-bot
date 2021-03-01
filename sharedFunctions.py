@@ -145,14 +145,12 @@ async def getProfile(author, ctx, self):
 	embed=discord.Embed(title=author.name + ' ' + leaderemblem + str(curatoremblem) + botemblem)
 	embed.set_thumbnail(url=author.avatar_url)
 	if result:
-		embed.add_field(name="Thanks", value=result.get('points'), inline=True)
+		embed.add_field(name="Thanks received", value=result.get('points'), inline=True)
 	else:
-		embed.add_field(name="Thanks", value='0', inline=True)
+		embed.add_field(name="Thanks received", value='0', inline=True)
 	if result:
-		embed.add_field(name="Global Rank", value=leadervalue, inline=True)
-		if not isinstance(ctx.message.channel, discord.channel.DMChannel):
-			embed.add_field(name="Local Rank", value=localvalue, inline=True)
-		embed.add_field(name="Reacted posts", value=len(sentpoints), inline=True)
+		embed.add_field(name="Rank", value=leadervalue, inline=True)
+		embed.add_field(name="Thanks given", value=len(sentpoints), inline=True)
 		embed.add_field(name="Stars received", value=starsrec, inline=True)
 	await ctx.send(embed=embed)
 
