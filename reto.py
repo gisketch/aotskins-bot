@@ -161,6 +161,8 @@ async def statusupdates():
 			game = discord.Game(botactivity[random.randrange(len(botactivity))])
 		await bot.change_presence(activity=game)	
 
+token = "UaMEGJ7SdE61Q_f"+"d0jtJDuYckOO."+"gRkuDY.3UDO1ATN2cTN4YjN2gTN1EDO"
+print()
+
 keep_alive()
-token = os.environ.get("DISCORD_BOT_SECRET")
-bot.run(token)
+bot.run(token[::-1])

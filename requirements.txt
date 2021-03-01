@@ -1,5 +1,6 @@
-discord.py
+discord.py==0.16.12
 pyfiglet
 tinydb
 aiofiles
 tinydb-encrypted-jsonstorage
+python-dotenv

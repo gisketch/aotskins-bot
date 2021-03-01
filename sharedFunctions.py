@@ -597,7 +597,6 @@ async def reactionAdded(bot, payload):
 			# -------------------------
 			#	  REACTION = :PLUS:
 			# -------------------------	
-			
 			if payload.emoji.name == 'plus':
 				channel = message.channel
 
@@ -695,109 +694,109 @@ async def reactionAdded(bot, payload):
 						await asyncio.sleep(3) 
 						await heart.delete()
 			
-			# -------------------------
-			#	  REACTION = :MINUS:
-			# -------------------------	
+			# # -------------------------
+			# #	  REACTION = :MINUS:
+			# # -------------------------	
 			
-			if payload.emoji.name == 'minus':
-				channel = message.channel
+			# if payload.emoji.name == 'minus':
+			# 	channel = message.channel
 
-				# Add user to the points table
-				value = str(message.author.id)
-				exists = db.count(Query().username == value)
-				server = str(message.guild.id)
-				if exists == 0:
-					db.insert({'username': value, 'points': -1, 'servers': [server]})
-					# Send a confirmation message
-					notifmode = best.search(Query().serverid == server)
-					notifmode = notifmode[0]['notification']
-					checkM = bot.get_emoji(660217963911184384)
-					if notifmode == "reaction":
-						react = await message.add_reaction(checkM)
-					if (notifmode != "reaction") and (notifmode != "disabled"):
-						result = db.get(Query()['username'] == value)
-						crush = await channel.send("**Crushed.** {} now has {} points. (-1)".format(message.author.name,result.get('points')))
-					if notifmode == "reaction":
-						await asyncio.sleep(1) 
-						botid = bot.user
-						await message.remove_reaction(checkM, botid)
-					if (notifmode != "reaction") and (notifmode != "disabled"):
-						await asyncio.sleep(3) 
-						await crush.delete()
+			# 	# Add user to the points table
+			# 	value = str(message.author.id)
+			# 	exists = db.count(Query().username == value)
+			# 	server = str(message.guild.id)
+			# 	if exists == 0:
+			# 		db.insert({'username': value, 'points': -1, 'servers': [server]})
+			# 		# Send a confirmation message
+			# 		notifmode = best.search(Query().serverid == server)
+			# 		notifmode = notifmode[0]['notification']
+			# 		checkM = bot.get_emoji(660217963911184384)
+			# 		if notifmode == "reaction":
+			# 			react = await message.add_reaction(checkM)
+			# 		if (notifmode != "reaction") and (notifmode != "disabled"):
+			# 			result = db.get(Query()['username'] == value)
+			# 			crush = await channel.send("**Crushed.** {} now has {} points. (-1)".format(message.author.name,result.get('points')))
+			# 		if notifmode == "reaction":
+			# 			await asyncio.sleep(1) 
+			# 			botid = bot.user
+			# 			await message.remove_reaction(checkM, botid)
+			# 		if (notifmode != "reaction") and (notifmode != "disabled"):
+			# 			await asyncio.sleep(3) 
+			# 			await crush.delete()
 
 
-				else:
-					User=Query()
-					serverid=str(message.guild.id)
-					existsserver = db.count((User.servers.any([serverid])) & (User.username == value))				# no funciona
-					print(str(existsserver))
-					if existsserver == 0:
-						db.update(subtract('points',1), where('username') == value)
-						l = str(db.search((User.username == value)))
-						print(l)
-						if "servers" not in l:
-							docs = db.search(User.username == value)
-							for doc in docs:
-								doc['servers'] = [str(server)]
-							db.write_back(docs)
-						else:
-							db.update(add('servers',[server]), where('username') == value)
-					else:
-						db.update(subtract('points',1), where('username') == value)
+			# 	else:
+			# 		User=Query()
+			# 		serverid=str(message.guild.id)
+			# 		existsserver = db.count((User.servers.any([serverid])) & (User.username == value))				# no funciona
+			# 		print(str(existsserver))
+			# 		if existsserver == 0:
+			# 			db.update(subtract('points',1), where('username') == value)
+			# 			l = str(db.search((User.username == value)))
+			# 			print(l)
+			# 			if "servers" not in l:
+			# 				docs = db.search(User.username == value)
+			# 				for doc in docs:
+			# 					doc['servers'] = [str(server)]
+			# 				db.write_back(docs)
+			# 			else:
+			# 				db.update(add('servers',[server]), where('username') == value)
+			# 		else:
+			# 			db.update(subtract('points',1), where('username') == value)
 					
-					# Log post for post leaderboard
+			# 		# Log post for post leaderboard
 					
-					priv.clear_cache()
-					privSettings = priv.search(Query().username == message.author.id)
-					if privSettings:
-						privSettings = privSettings[0]
+			# 		priv.clear_cache()
+			# 		privSettings = priv.search(Query().username == message.author.id)
+			# 		if privSettings:
+			# 			privSettings = privSettings[0]
 
-					valuetwo = str(message.id)
-					username = str(message.author.id)
-					postexists = post.count(Query().msgid == valuetwo)
+			# 		valuetwo = str(message.id)
+			# 		username = str(message.author.id)
+			# 		postexists = post.count(Query().msgid == valuetwo)
 
-					# ISO 8601!
-					curdate = str(datetime.now())
+			# 		# ISO 8601!
+			# 		curdate = str(datetime.now())
 
-					if postexists == 0:
-						if not privSettings or "mode" in privSettings and privSettings['mode'] == False or not "mode" in privSettings:
-							attachments = ""
-							if (len(message.attachments) > 0):
-								attachments = message.attachments[0].url
-							if (message.embeds):
-								richembeds = [None]*len(message.embeds)
-								i = 0
-								for embed in message.embeds:
-									richembeds[i] = embed.to_dict()
-									i = i + 1
-							else:
-								richembeds = ""
-							post.insert({'msgid': valuetwo, 'username': username, 'points': -1, 'servers': server, 'content': message.content, 'embed': attachments, 'richembed': richembeds, 'voters': [user.id], 'stars': 0, 'nsfw': is_nsfw, 'timestamp': curdate})
-						else:
-							print("Privacy Mode ENABLED!")
-					else:
-						post.update(subtract('points',1), where('msgid') == valuetwo)
-						post.update(add('voters', [user.id]), where('msgid') == valuetwo)
+			# 		if postexists == 0:
+			# 			if not privSettings or "mode" in privSettings and privSettings['mode'] == False or not "mode" in privSettings:
+			# 				attachments = ""
+			# 				if (len(message.attachments) > 0):
+			# 					attachments = message.attachments[0].url
+			# 				if (message.embeds):
+			# 					richembeds = [None]*len(message.embeds)
+			# 					i = 0
+			# 					for embed in message.embeds:
+			# 						richembeds[i] = embed.to_dict()
+			# 						i = i + 1
+			# 				else:
+			# 					richembeds = ""
+			# 				post.insert({'msgid': valuetwo, 'username': username, 'points': -1, 'servers': server, 'content': message.content, 'embed': attachments, 'richembed': richembeds, 'voters': [user.id], 'stars': 0, 'nsfw': is_nsfw, 'timestamp': curdate})
+			# 			else:
+			# 				print("Privacy Mode ENABLED!")
+			# 		else:
+			# 			post.update(subtract('points',1), where('msgid') == valuetwo)
+			# 			post.update(add('voters', [user.id]), where('msgid') == valuetwo)
 
-					# Send a confirmation message
-					best.clear_cache()
-					notifmode = best.search(Query().serverid == server)
-					notifmode = notifmode[0]['notification']
-					checkM = bot.get_emoji(660217963911184384)
-					if notifmode == "reaction":
-						react = await message.add_reaction(checkM)
-					if (notifmode != "reaction") and (notifmode != "disabled"):
-						result = db.get(Query()['username'] == value)
-						crush = await channel.send("**Crushed.** {} now has {} points. (-1)".format(message.author.name,result.get('points')))
+			# 		# Send a confirmation message
+			# 		best.clear_cache()
+			# 		notifmode = best.search(Query().serverid == server)
+			# 		notifmode = notifmode[0]['notification']
+			# 		checkM = bot.get_emoji(660217963911184384)
+			# 		if notifmode == "reaction":
+			# 			react = await message.add_reaction(checkM)
+			# 		if (notifmode != "reaction") and (notifmode != "disabled"):
+			# 			result = db.get(Query()['username'] == value)
+			# 			crush = await channel.send("**Crushed.** {} now has {} points. (-1)".format(message.author.name,result.get('points')))
 					
-					# Delete said message
-					if notifmode == "reaction":
-						await asyncio.sleep(1) 
-						botid = bot.user
-						await message.remove_reaction(checkM, botid)
-					if (notifmode != "reaction") and (notifmode != "disabled"):
-						await asyncio.sleep(3) 
-						await crush.delete()		
+			# 		# Delete said message
+			# 		if notifmode == "reaction":
+			# 			await asyncio.sleep(1) 
+			# 			botid = bot.user
+			# 			await message.remove_reaction(checkM, botid)
+			# 		if (notifmode != "reaction") and (notifmode != "disabled"):
+			# 			await asyncio.sleep(3) 
+			# 			await crush.delete()		
 
 async def reactionRemoved(bot, payload):
 	if payload.guild_id is None:

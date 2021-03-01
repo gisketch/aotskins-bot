@@ -141,7 +141,7 @@ class Reaction(commands.Cog):
 							plus = discord.utils.get(message.guild.emojis, name="plus")
 							minus = discord.utils.get(message.guild.emojis, name="minus")
 							await message.add_reaction(plus)
-							await message.add_reaction(minus)
+							# await message.add_reaction(minus)
 					# Links 
 					links = ['pastebin.com','imgur.com']
 					for link in links:
@@ -149,7 +149,7 @@ class Reaction(commands.Cog):
 							plus = discord.utils.get(message.guild.emojis, name="plus")
 							minus = discord.utils.get(message.guild.emojis, name="minus")
 							await message.add_reaction(plus)
-							await message.add_reaction(minus)
+							# await message.add_reaction(minus)
 
 
 
