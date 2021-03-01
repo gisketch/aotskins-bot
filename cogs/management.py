@@ -118,19 +118,19 @@ class Management(commands.Cog):
 						return
 					if args[2] and value:
 						# DO THE THING
-						exists = db.count(Query().username == user.id)
+						exists = db.count(Query().username == str(user.id))
 						server = str(ctx.message.guild.id)
 						if exists == 0:
 							if value == "add":
-								db.insert({'username': user.id, 'points': karma, 'servers': [server]})
+								db.insert({'username': str(user.id), 'points': karma, 'servers': [server]})
 							if value == "subtract":
-								db.insert({'username': user.id, 'points': -karma, 'servers': [server]})
+								db.insert({'username': str(user.id), 'points': -karma, 'servers': [server]})
 						else:
 							if value == "add":
-								db.update(add('points',karma), where('username') == user.id)
+								db.update(add('points',karma), where('username') == str(user.id))
 							if value == "subtract":
-								db.update(subtract('points',karma), where('username') == user.id)
-						result = db.get(Query()['username'] == user.id)
+								db.update(subtract('points',karma), where('username') == str(user.id))
+						result = db.get(Query()['username'] == str(user.id))
 						await ctx.send('Great! ' + user.name + "'s new karma total is " + str(result.get('points')) + ".")
 				else:
 					await sendErrorEmbed(ctx, "That's not a valid amount of karma!")
