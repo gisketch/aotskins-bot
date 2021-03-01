@@ -34,7 +34,7 @@ class Karma(commands.Cog):
 	#	      ?PROFILE
 	# -------------------------
 
-	@commands.command(aliases=['karma', 'points', 'point'], description="Check the accumulated amount of points (Karma) a given user has, among with other stats! Ping to check another user's karma account.")
+	@commands.command(aliases=['thanks', 'points', 'point'], description="Check the accumulated amount of points (Karma) a given user has, among with other stats! Ping to check another user's karma account.")
 	async def profile(self, ctx, *args):
 		"""Check your (or others') profile, with info about your karma total and more!"""
 
@@ -109,7 +109,7 @@ class Karma(commands.Cog):
 		for x in result: # For each entry in the database:
 			leaderboard[x.get("username")] = int(x.get("points")) # ...save the user's ID and its amount of points in a new Python database.
 		leaderboard = sorted(leaderboard.items(), key = lambda x : x[1], reverse=True) # Sort this database by amount of points.
-		s = ""
+		s = "Top 50 artists sorted by most thanks received.\n\n"
 		i = 0
 		for key, value in leaderboard: # For each value in the new, sorted DB:
 			if not args:
@@ -119,13 +119,13 @@ class Karma(commands.Cog):
 						user = await self.client.fetch_user(key)
 						print("User not found. Trying to fetch it...")
 					if i==0:
-						s += ("🥇 " + str(user) + " - " + str(value) +" Karma\n")
+						s += ("🥇 #" + str(i+1) + " - " + str(user) + " - " + str(value) +" thanks\n")
 					elif i==1:
-						s += ("🥈 " + str(user) + " - " + str(value) +" Karma\n")
+						s += ("🥈 #" + str(i+1) + " - "  + str(user) + " - " + str(value) +" thanks\n")
 					elif i==2:
-						s += ("🥉 " + str(user) + " - " + str(value) +" Karma\n")
+						s += ("🥉 #" + str(i+1) + " - "  + str(user) + " - " + str(value) +" thanks\n")
 					else:
-						s += ("✨ " + str(user) + " - " + str(value) +" Karma\n")
+						s += ("🎨 #" + str(i+1) + " - "  + str(user) + " - " + str(value) +" thanks\n")
 					i = i+1
 			elif args[0] == "all":
 				user = self.client.get_user(key)
@@ -133,15 +133,15 @@ class Karma(commands.Cog):
 					user = await self.client.fetch_user(key)
 					print("User not found. Trying to fetch it...")
 				if i==0:
-					s += ("🥇 #" + str(i+1) + " - " + str(user) + " - " + str(value) +" Karma\n")
+					s += ("🥇 #" + str(i+1) + " - " + str(user) + " - " + str(value) +" thanks\n")
 				elif i==1:
-					s += ("🥈 #" + str(i+1) + " - "  + str(user) + " - " + str(value) +" Karma\n")
+					s += ("🥈 #" + str(i+1) + " - "  + str(user) + " - " + str(value) +" thanks\n")
 				elif i==2:
-					s += ("🥉 #" + str(i+1) + " - "  + str(user) + " - " + str(value) +" Karma\n")
+					s += ("🥉 #" + str(i+1) + " - "  + str(user) + " - " + str(value) +" thanks\n")
 				else:
-					s += ("✨ #" + str(i+1) + " - "  + str(user) + " - " + str(value) +" Karma\n")
+					s += ("🎨 #" + str(i+1) + " - "  + str(user) + " - " + str(value) +" thanks\n")
 				i = i+1
-		embed = discord.Embed(title="Server Leaderboard", colour=discord.Colour(0xa353a9), description=s)
+		embed = discord.Embed(title="AOTSKINS' Top 50 Artists", colour=discord.Colour(0xa353a9), description=s)
 		glb = await ctx.send(embed=embed)
 		
 	# ---------------------------------

@@ -145,9 +145,9 @@ async def getProfile(author, ctx, self):
 	embed=discord.Embed(title=author.name + ' ' + leaderemblem + str(curatoremblem) + botemblem)
 	embed.set_thumbnail(url=author.avatar_url)
 	if result:
-		embed.add_field(name="Karma", value=result.get('points'), inline=True)
+		embed.add_field(name="Thanks", value=result.get('points'), inline=True)
 	else:
-		embed.add_field(name="Karma", value='0', inline=True)
+		embed.add_field(name="Thanks", value='0', inline=True)
 	if result:
 		embed.add_field(name="Global Rank", value=leadervalue, inline=True)
 		if not isinstance(ctx.message.channel, discord.channel.DMChannel):
@@ -315,7 +315,7 @@ async def createLeaderboardEmbed(self, values, numero, ceronumero, ctx, ctxMessa
 			emberino.add_field(name="Position", value="🥉 "+str(numero), inline=True)
 		else:
 			emberino.add_field(name="Position", value="✨ "+str(numero), inline=True)
-		emberino.add_field(name="Karma", value=f"{emoji} " + str(values[0]), inline=True)
+		emberino.add_field(name="Thanks", value=f"{emoji} " + str(values[0]), inline=True)
 		if (values[5] != "None"): #if theres 'stars' value in post
 			emberino.add_field(name="Stars", value=":star2: "+str(values[5]), inline=True)
 		if(len(values[3]) > 0):
