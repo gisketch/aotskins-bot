@@ -163,7 +163,7 @@ class Karma(commands.Cog):
 		i = 0
 		for key, value in leaderboard: # For each value in the new, sorted DB:
 			if not args:
-				if i != 10:
+				if i != 50:
 					user = self.client.get_user(key)
 					if not user:
 						user = await self.client.fetch_user(key)
