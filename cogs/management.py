@@ -81,7 +81,7 @@ class Management(commands.Cog):
 		else:
 			await sendErrorEmbed(ctx, "Looks like you don't have permission to do this?\n_Are you hosting " + botname + "? If so make sure your User ID is on the **botowner** array on the config.json file!_")
 	
-	@commands.command(aliases=['editkarma', 'karmaedit'])
+	@commands.command(aliases=['editkarma', 'karmaedit', 'editthanks', 'edit'])
 	async def rosebud(self,ctx,*args):
 		"""[BOT ADMIN ONLY] Add or subtract karma from an user."""
 

@@ -612,7 +612,7 @@ async def reactionAdded(bot, payload):
 						react = await message.add_reaction(checkM)
 					if (notifmode != "reaction") and (notifmode != "disabled"):
 						result = db.get(Query()['username'] == value)
-						heart = await channel.send("**Hearted!** {} now has {} points. (+1)".format(message.author.name,result.get('points')))
+						heart = await channel.send("**Thanked!** {} now has {} thanks. (+1)".format(message.author.name,result.get('points')))
 					if notifmode == "reaction":
 						await asyncio.sleep(1) 
 						botid = bot.user
@@ -681,7 +681,7 @@ async def reactionAdded(bot, payload):
 						react = await message.add_reaction(checkM)
 					if (notifmode != "reaction") and (notifmode != "disabled"):
 						result = db.get(Query()['username'] == value)
-						heart = await channel.send("**Hearted!** {} now has {} points. (+1)".format(message.author.name,result.get('points')))
+						heart = await channel.send("**Thanked!** {} now has {} thanks. (+1)".format(message.author.name,result.get('points')))
 					
 					# Delete said message
 					if notifmode == "reaction":
