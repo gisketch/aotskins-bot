@@ -223,19 +223,16 @@ class Karma(commands.Cog):
 						user = await self.client.fetch_user(key)
 						print("User not found. Trying to fetch it...")
 					if i==0:
-						s += ("🥇 #" + str(i+1) + " - " + str(user)[:-5] + " - " + str(value) +" thanks\n")
+						s += ("🥇 #" + str(i+1) + " - " + f"<@!{key}>" + " - " + str(value) +" thanks\n")
 					elif i==1:
-						s += ("🥈 #" + str(i+1) + " - "  + str(user)[:-5] + " - " + str(value) +" thanks\n")
+						s += ("🥈 #" + str(i+1) + " - "  + f"<@!{key}>" + " - " + str(value) +" thanks\n")
 					elif i==2:
-						s += ("🥉 #" + str(i+1) + " - "  + str(user)[:-5] + " - " + str(value) +" thanks\n")
+						s += ("🥉 #" + str(i+1) + " - "  + f"<@!{key}>" + " - " + str(value) +" thanks\n")
 					else:
-						s += ("🎨 #" + str(i+1) + " - "  + str(user)[:-5] + " - " + str(value) +" thanks\n")
+						s += ("🎨 #" + str(i+1) + " - "  + f"<@!{key}>" + " - " + str(value) +" thanks\n")
 					i = i+1
 		embed = discord.Embed(title="AOTSKINS Leaderboard", colour=discord.Colour(0xa353a9), description=s)
 		glb = await ctx.send(embed=embed)
-		for role in ctx.message.guild.roles:
-			await ctx.send(role.name)
-			await ctx.send(role.color)
 		
 	# ---------------------------------
 	#	    ?GPLB (GLOBAL POST LB)
