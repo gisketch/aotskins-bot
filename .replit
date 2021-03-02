@@ -1,2 +1,1 @@
-language = "python3"
-run = "pip install discord.py pyfiglet tinydb aiofiles tinydb-encrypted-jsonstorage"
+pip install discord.py pyfiglet tinydb aiofiles tinydb-encrypted-jsonstorage
