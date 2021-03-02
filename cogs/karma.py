@@ -119,13 +119,13 @@ class Karma(commands.Cog):
 						user = await self.client.fetch_user(key)
 						print("User not found. Trying to fetch it...")
 					if i==0:
-						s += ("🥇 #" + str(i+1) + " - " + str(user) + " - " + str(value) +" thanks\n")
+						s += ("🥇 #" + str(i+1) + " - " + str(user)[:-5] + " - " + str(value)[:-5] +" thanks\n")
 					elif i==1:
-						s += ("🥈 #" + str(i+1) + " - "  + str(user) + " - " + str(value) +" thanks\n")
+						s += ("🥈 #" + str(i+1) + " - "  + str(user)[:-5] + " - " + str(value)[:-5] +" thanks\n")
 					elif i==2:
-						s += ("🥉 #" + str(i+1) + " - "  + str(user) + " - " + str(value) +" thanks\n")
+						s += ("🥉 #" + str(i+1) + " - "  + str(user)[:-5] + " - " + str(value)[:-5] +" thanks\n")
 					else:
-						s += ("🎨 #" + str(i+1) + " - "  + str(user) + " - " + str(value) +" thanks\n")
+						s += ("🎨 #" + str(i+1) + " - "  + str(user)[:-5] + " - " + str(value)[:-5] +" thanks\n")
 					i = i+1
 			elif args[0] == "all":
 				user = self.client.get_user(key)
@@ -133,13 +133,13 @@ class Karma(commands.Cog):
 					user = await self.client.fetch_user(key)
 					print("User not found. Trying to fetch it...")
 				if i==0:
-					s += ("🥇 #" + str(i+1) + " - " + str(user) + " - " + str(value) +" thanks\n")
+					s += ("🥇 #" + str(i+1) + " - " + str(user)[:-5] + " - " + str(value) +" thanks\n")
 				elif i==1:
-					s += ("🥈 #" + str(i+1) + " - "  + str(user) + " - " + str(value) +" thanks\n")
+					s += ("🥈 #" + str(i+1) + " - "  + str(user)[:-5] + " - " + str(value) +" thanks\n")
 				elif i==2:
-					s += ("🥉 #" + str(i+1) + " - "  + str(user) + " - " + str(value) +" thanks\n")
+					s += ("🥉 #" + str(i+1) + " - "  + str(user)[:-5] + " - " + str(value) +" thanks\n")
 				else:
-					s += ("🎨 #" + str(i+1) + " - "  + str(user) + " - " + str(value) +" thanks\n")
+					s += ("🎨 #" + str(i+1) + " - "  + str(user)[:-5] + " - " + str(value) +" thanks\n")
 				i = i+1
 		embed = discord.Embed(title="AOTSKINS Leaderboard", colour=discord.Colour(0xa353a9), description=s)
 		glb = await ctx.send(embed=embed)
@@ -169,13 +169,13 @@ class Karma(commands.Cog):
 						user = await self.client.fetch_user(key)
 						print("User not found. Trying to fetch it...")
 					if i==0:
-						s += ("🥇 #" + str(i+1) + " - " + str(user) + " - " + str(value) +" thanks\n")
+						s += ("🥇 #" + str(i+1) + " - " + str(user)[:-5] + " - " + str(value) +" thanks\n")
 					elif i==1:
-						s += ("🥈 #" + str(i+1) + " - "  + str(user) + " - " + str(value) +" thanks\n")
+						s += ("🥈 #" + str(i+1) + " - "  + str(user)[:-5] + " - " + str(value) +" thanks\n")
 					elif i==2:
-						s += ("🥉 #" + str(i+1) + " - "  + str(user) + " - " + str(value) +" thanks\n")
+						s += ("🥉 #" + str(i+1) + " - "  + str(user)[:-5] + " - " + str(value) +" thanks\n")
 					else:
-						s += ("🎨 #" + str(i+1) + " - "  + str(user) + " - " + str(value) +" thanks\n")
+						s += ("🎨 #" + str(i+1) + " - "  + str(user)[:-5] + " - " + str(value) +" thanks\n")
 					i = i+1
 			elif args[0] == "all":
 				user = self.client.get_user(key)
@@ -183,13 +183,13 @@ class Karma(commands.Cog):
 					user = await self.client.fetch_user(key)
 					print("User not found. Trying to fetch it...")
 				if i==0:
-					s += ("🥇 #" + str(i+1) + " - " + str(user) + " - " + str(value) +" thanks\n")
+					s += ("🥇 #" + str(i+1) + " - " + str(user)[:-5] + " - " + str(value) +" thanks\n")
 				elif i==1:
-					s += ("🥈 #" + str(i+1) + " - "  + str(user) + " - " + str(value) +" thanks\n")
+					s += ("🥈 #" + str(i+1) + " - "  + str(user)[:-5] + " - " + str(value) +" thanks\n")
 				elif i==2:
-					s += ("🥉 #" + str(i+1) + " - "  + str(user) + " - " + str(value) +" thanks\n")
+					s += ("🥉 #" + str(i+1) + " - "  + str(user)[:-5] + " - " + str(value) +" thanks\n")
 				else:
-					s += ("🎨 #" + str(i+1) + " - "  + str(user) + " - " + str(value) +" thanks\n")
+					s += ("🎨 #" + str(i+1) + " - "  + str(user)[:-5] + " - " + str(value) +" thanks\n")
 				i = i+1
 		embed = discord.Embed(title="AOTSKINS' Top 50 Artists", colour=discord.Colour(0xa353a9), description=s)
 
