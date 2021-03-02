@@ -1,7 +1,6 @@
 # New encryption method (1.6)!
 from tinydb import TinyDB, Query, where
 from tinydb.operations import add, subtract, delete
-import tinydb_encrypted_jsonstorage as tae
 from os.path import join as join_path
 
 # Boolean to string parser.
