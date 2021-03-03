@@ -166,10 +166,12 @@ class Karma(commands.Cog):
 					else:
 						s += ("🎨 #" + str(i+1) + " - "  + f"<@!{key}>" + " - " + str(value) +" thanks\n")
 					i = i+1
-		embed = discord.Embed(title="AOTSKINS' Top 50 Artists", colour=discord.Colour(0xa353a9), description=s)
+		embed = discord.Embed(title="AOTSKINS' Top 50 Artists", colour=discord.Colour(0xa353a9), description=s, timestamp=datetime.datetime.utcnow())
+		embed.set_footer(text='\u200b',icon_url="https://i.imgur.com/uZIlRnK.png")
 
 		channel = discord.utils.get(ctx.message.guild.text_channels, name="top-50")
 		lbMessage = await channel.fetch_message(815960589125287966)
+		
 		glb = await lbMessage.edit(embed=embed)
 		await ctx.send(content=f"<#815956314798424114> leaderboard updated")
 
