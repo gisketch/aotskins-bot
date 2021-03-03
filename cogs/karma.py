@@ -136,7 +136,7 @@ class Karma(commands.Cog):
 	#	    ?LEADERBOARD TOP 50 PERIODIC
 	# --------------------------
 	
-	@commands.command(aliases=['lb50','update'], description="Check the top 10 users of your server! May take a while to load.\nYour username/score isn't showing up on the leaderboards? Update 1.2.1 made it so servers you're in and your score are joined together. This will refresh the next time someone hearts/crushs/stars one of your comments.")
+	@commands.command(aliases=['lb50'], description="Check the top 10 users of your server! May take a while to load.\nYour username/score isn't showing up on the leaderboards? Update 1.2.1 made it so servers you're in and your score are joined together. This will refresh the next time someone hearts/crushs/stars one of your comments.")
 	async def updatelb(self, ctx, *args):
 		"""Check this server's users with the most karma."""
 		db.clear_cache()
