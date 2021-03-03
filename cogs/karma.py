@@ -147,7 +147,8 @@ class Karma(commands.Cog):
 		for x in result: # For each entry in the database:
 			leaderboard[x.get("username")] = int(x.get("points")) # ...save the user's ID and its amount of points in a new Python database.
 		leaderboard = sorted(leaderboard.items(), key = lambda x : x[1], reverse=True) # Sort this database by amount of points.
-		s = "Top 50 artists sorted by most thanks received. This message is updated every hour.\n\n"
+		dateToday = "....."
+		s = f"Top 50 artists sorted by most thanks received. This message is last updated on {dateToday}.\n\n"
 		i = 0
 		for key, value in leaderboard: # For each value in the new, sorted DB:
 			if not args:
@@ -170,7 +171,7 @@ class Karma(commands.Cog):
 		channel = discord.utils.get(ctx.message.guild.text_channels, name="top-50")
 		lbMessage = await channel.fetch_message(815960589125287966)
 		glb = await lbMessage.edit(embed=embed)
-		await ctx.send(content="#top-50 leaderboard updated")
+		await ctx.send(content=f"<#815956314798424114> leaderboard updated")
 
 	# --------------------------
 	#	    ?LEADERBOARD PROTOTYPE
