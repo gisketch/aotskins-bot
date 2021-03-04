@@ -173,11 +173,9 @@ class Karma(commands.Cog):
 		channel = discord.utils.get(thisguild.text_channels, name="top-50")
 		lbMessage = await channel.fetch_message(815960589125287966)
 
-		updatechannel = discord.utils.get(thisguild.text_channels, name="bot-commands")
 		staffchannel = discord.utils.get(thisguild.text_channels, name="staff-commands")
 
 		glb = await lbMessage.edit(embed=embed)
-		await updatechannel.send(content=f"<#815956314798424114> leaderboard updated")
 		await staffchannel.send(content=f"<#815956314798424114> leaderboard updated")
 
 	# --------------------------
