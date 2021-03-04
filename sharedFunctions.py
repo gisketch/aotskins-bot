@@ -151,14 +151,20 @@ async def getProfile(author, ctx, self):
 	embed=discord.Embed(title=author.name + ' ' + leaderemblem)
 	embed.set_thumbnail(url=author.avatar_url)
 	if result:
-		embed.add_field(name="Thanks Received", value=str(result.get('points')), inline=False)
+		embed.add_field(name="Thanks Received", value=result.get('points'), inline=False)
+		print(result.get('points'))
 	else:
 		embed.add_field(name="Thanks Received", value='0', inline=False)
+		print('0')
 	if result:
 		embed.add_field(name="Artist Rank", value=roleemblem, inline=False)
-		embed.add_field(name="Leaderboard Rank", value=str(leadervalue), inline=False)
-		embed.add_field(name="Thanks Given", value=str(len(sentpoints)), inline=False)
-		embed.add_field(name="Stars received", value=str(starsrec), inline=False)
+		embed.add_field(name="Leaderboard Rank", value=leadervalue, inline=False)
+		embed.add_field(name="Thanks Given", value=len(sentpoints), inline=False)
+		embed.add_field(name="Stars received", value=starsrec, inline=False)
+		print(roleemblem)
+		print(leadervalue)
+		print(len(sentpoints))
+		print(starsrec)
 	await ctx.send(embed=embed)
 
 #####
