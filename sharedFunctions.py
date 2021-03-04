@@ -91,9 +91,9 @@ async def getProfile(author, ctx, self):
 		elif leadervalue <= 10:
 			leaderemblem = "🏅"
 		else:
-			leaderemblem = "'\u200'"
+			leaderemblem = '\u200'
 	else:
-		leaderemblem = "'\u200'"
+		leaderemblem = '\u200'
 
 	#
 	# REVISAR ESTATUS DE CURATOR
