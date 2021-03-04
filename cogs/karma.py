@@ -184,7 +184,7 @@ class Karma(commands.Cog):
 	#	    ?AUTOROLES
 	# --------------------------
 	
-	@tasks.loop(seconds=60)
+	@tasks.loop(seconds=5)
 	async def autorole(self):
 		"""Autoroles."""
 		db.clear_cache()
@@ -199,6 +199,7 @@ class Karma(commands.Cog):
 
 		thisguild = self.client.get_guild(811586984879063050)
 		updatechannel = discord.utils.get(thisguild.text_channels, name="bot-commands")
+		staffchannel = discord.utils.get(thisguild.text_channels, name="staff-commands")
 
 		#Roles
 
@@ -217,6 +218,7 @@ class Karma(commands.Cog):
 
 			if value >= 100:
 				await user.add_roles(veteran_artist)
+				await staffchannel.send(content=str(user) + " reached veteran artist. pog.")
 
 			i = i+1
 	# ---------------------------------
