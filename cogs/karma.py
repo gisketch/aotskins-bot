@@ -185,8 +185,8 @@ class Karma(commands.Cog):
 	@tasks.loop(seconds=5)
 	async def autorole(self):
 		"""Autoroles."""
-		await client.wait_until_ready()
-		
+		await self.client.wait_until_ready()
+
 		db.clear_cache()
 		User = Query()
 		server = str(811586984879063050)
