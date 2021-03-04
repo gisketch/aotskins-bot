@@ -30,6 +30,7 @@ class Karma(commands.Cog):
 	"""
 	def __init__(self, client):
 		self.client = client
+		self.updatelb.start()
 	
 	# -------------------------
 	#	      ?PROFILE
@@ -136,44 +137,47 @@ class Karma(commands.Cog):
 	#	    ?LEADERBOARD TOP 50 PERIODIC
 	# --------------------------
 	
-	@commands.command(aliases=['lb50'], description="Check the top 10 users of your server! May take a while to load.\nYour username/score isn't showing up on the leaderboards? Update 1.2.1 made it so servers you're in and your score are joined together. This will refresh the next time someone hearts/crushs/stars one of your comments.")
-	async def updatelb(self, ctx, *args):
+	@tasks.loop(seconds=3600)
+	async def updatelb(self,):
 		"""Check this server's users with the most karma."""
 		db.clear_cache()
 		User = Query()
-		server = str(ctx.message.guild.id)
+		server = str(811586984879063050)
 		result = db.search(User.servers.all([server])) # doesnt work
 		leaderboard = {} # Prepares an empty dictionary.
 		for x in result: # For each entry in the database:
 			leaderboard[x.get("username")] = int(x.get("points")) # ...save the user's ID and its amount of points in a new Python database.
 		leaderboard = sorted(leaderboard.items(), key = lambda x : x[1], reverse=True) # Sort this database by amount of points.
 		dateToday = "....."
-		s = f"Top 50 artists sorted by most thanks received. This message is last updated on {dateToday}.\n\n"
+		s = f"Top 50 artists sorted by most thanks received.\n\n"
 		i = 0
 		for key, value in leaderboard: # For each value in the new, sorted DB:
-			if not args:
-				if i != 50:
-					user = self.client.get_user(key)
-					if not user:
-						user = await self.client.fetch_user(key)
-						print("User not found. Trying to fetch it...")
-					if i==0:
-						s += ("🥇 #" + str(i+1) + " - " + f"<@!{key}>" + " - " + str(value) +" thanks\n")
-					elif i==1:
-						s += ("🥈 #" + str(i+1) + " - "  + f"<@!{key}>" + " - " + str(value) +" thanks\n")
-					elif i==2:
-						s += ("🥉 #" + str(i+1) + " - "  + f"<@!{key}>" + " - " + str(value) +" thanks\n")
-					else:
-						s += ("🎨 #" + str(i+1) + " - "  + f"<@!{key}>" + " - " + str(value) +" thanks\n")
-					i = i+1
-		embed = discord.Embed(title="AOTSKINS' Top 50 Artists", colour=discord.Colour(0xa353a9), description=s, timestamp=datetime.datetime.utcnow())
-		embed.set_footer(text='\u200b',icon_url="https://i.imgur.com/uZIlRnK.png")
+			if i != 50:
+				user = self.client.get_user(key)
+				if not user:
+					user = await self.client.fetch_user(key)
+				if i==0:
+					s += ("🥇 #" + str(i+1) + " - " + f"<@!{key}>" + " - " + str(value) +" thanks\n")
+				elif i==1:
+					s += ("🥈 #" + str(i+1) + " - "  + f"<@!{key}>" + " - " + str(value) +" thanks\n")
+				elif i==2:
+					s += ("🥉 #" + str(i+1) + " - "  + f"<@!{key}>" + " - " + str(value) +" thanks\n")
+				else:
+					s += ("🎨 #" + str(i+1) + " - "  + f"<@!{key}>" + " - " + str(value) +" thanks\n")
+				i = i+1
+		embed = discord.Embed(title="AOTSKINS' Top 50 Artists", colour=discord.Colour(0xa353a9), description=s)
+		embed.set_footer(text='The list is last updated every hour.')
 
-		channel = discord.utils.get(ctx.message.guild.text_channels, name="top-50")
+		thisguild = self.client.get_guild(811586984879063050)
+		channel = discord.utils.get(thisguild.text_channels, name="top-50")
 		lbMessage = await channel.fetch_message(815960589125287966)
-		
+
+		updatechannel = discord.utils.get(thisguild.text_channels, name="bot-commands")
+		staffchannel = discord.utils.get(thisguild.text_channels, name="staff-commands")
+
 		glb = await lbMessage.edit(embed=embed)
-		await ctx.send(content=f"<#815956314798424114> leaderboard updated")
+		await updatechannel.send(content=f"<#815956314798424114> leaderboard updated")
+		await staffchannel.send(content=f"<#815956314798424114> leaderboard updated")
 
 	# --------------------------
 	#	    ?LEADERBOARD PROTOTYPE
