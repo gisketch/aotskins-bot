@@ -215,11 +215,11 @@ class Karma(commands.Cog):
 			if not user:
 				user = await self.client.fetch_user(key)
 				member = await thisguild.fetch_member(key)
-				
+
 			member = discord.utils.get(thisguild.members, id=key)
 
 			if value >= 1000:
-				member.add_roles(senior_designer)
+				print(member)
 				await staffchannel.send(content=str(user) + " reached 1000 thanks!!!!")
 
 			i = i+1
