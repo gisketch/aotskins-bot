@@ -215,7 +215,7 @@ class Karma(commands.Cog):
 				user = await self.client.fetch_user(key)
 			for x in thisguild.members:
 				if int(key) == int(x.id):
-					if value >= 20 and value < 100:
+					if value >= 25 and value < 100:
 						await x.add_roles(newbie_artist)
 						await x.remove_roles(veteran_artist)
 						await x.remove_roles(senior_artist)
@@ -231,7 +231,7 @@ class Karma(commands.Cog):
 						await x.remove_roles(veteran_designer)
 						await x.remove_roles(senior_designer)
 						await x.remove_roles(artist)
-					elif value >= 200 and value < 300:
+					elif value >= 200 and value < 400:
 						await x.add_roles(senior_artist)
 						await x.remove_roles(newbie_artist)
 						await x.remove_roles(veteran_artist)
@@ -239,7 +239,7 @@ class Karma(commands.Cog):
 						await x.remove_roles(veteran_designer)
 						await x.remove_roles(senior_designer)
 						await x.remove_roles(artist)
-					elif value >= 300 and value < 400:
+					elif value >= 400 and value < 700:
 						await x.add_roles(designer)
 						await x.remove_roles(newbie_artist)
 						await x.remove_roles(veteran_artist)
@@ -247,7 +247,7 @@ class Karma(commands.Cog):
 						await x.remove_roles(veteran_designer)
 						await x.remove_roles(senior_designer)
 						await x.remove_roles(artist)
-					elif value >= 400 and value < 600:
+					elif value >= 700 and value < 1000:
 						await x.add_roles(veteran_designer)
 						await x.remove_roles(newbie_artist)
 						await x.remove_roles(veteran_artist)
@@ -255,7 +255,7 @@ class Karma(commands.Cog):
 						await x.remove_roles(designer)
 						await x.remove_roles(senior_designer)
 						await x.remove_roles(artist)
-					elif value >= 600:
+					elif value >= 1000:
 						await x.add_roles(senior_designer)
 						await x.remove_roles(newbie_artist)
 						await x.remove_roles(veteran_artist)

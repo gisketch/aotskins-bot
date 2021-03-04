@@ -109,7 +109,6 @@ async def getProfile(author, ctx, self):
 	artist = discord.utils.get(thisguild.roles, name="Artist")
 
 	roleemblem = "None"
-	color = 0xffffff
 	if newbie_artist in author.roles:
 		roleemblem = f"{newbie_artist.mention}"
 	elif veteran_artist in author.roles:
