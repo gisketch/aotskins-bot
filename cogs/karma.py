@@ -215,8 +215,8 @@ class Karma(commands.Cog):
 			if not user:
 				user = await self.client.fetch_user(key)
 
-			if value >= 100:
-				# await staffchannel.send(content=str(user) + " reached veteran artist. pog.")
+			# if value >= 100:
+			# await staffchannel.send(content=str(user) + " reached veteran artist. pog.")
 
 			i = i+1
 	# ---------------------------------
