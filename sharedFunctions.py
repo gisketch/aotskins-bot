@@ -98,22 +98,18 @@ async def getProfile(author, ctx, self):
 	#
 	# REVISAR ESTATUS DE CURATOR
 	#
+	thisguild = ctx.message.guild
+
+	newbie_artist = discord.utils.get(thisguild.roles, name="Newbie Artist")
+	veteran_artist = discord.utils.get(thisguild.roles, name="Veteran Artist")
+	senior_artist = discord.utils.get(thisguild.roles, name="Senior Artist")
+	designer = discord.utils.get(thisguild.roles, name="Designer")
+	veteran_designer = discord.utils.get(thisguild.roles, name="Veteran Designer")
+	senior_designer = discord.utils.get(thisguild.roles, name="Senior Designer")
 
 	curatoremblem = ""
-	if not isinstance(ctx.message.channel, discord.channel.DMChannel):
-		curatoremote = self.client.get_emoji(742136325628756000)
-		role = discord.utils.get(ctx.guild.roles, name="Curator")
-		if role in author.roles:
-			curatoremblem = str(curatoremote)
-
-	#
-	# REVISAR ESTATUS DE BOTOWNER
-	#
-
-	botemblem = ""
-	for x in botowner:
-		if (int(author.id) == int(x)):
-			botemblem = "👨‍💻"
+	if newbie_artist in author.roles:
+		curatoremblem = f"{newbie_artist.mention}"
 
 	#
 	# POINTS SENT
@@ -142,7 +138,7 @@ async def getProfile(author, ctx, self):
 	# SEND THE EMBED
 	#
 
-	embed=discord.Embed(title=author.name + ' ' + leaderemblem + str(curatoremblem) + botemblem)
+	embed=discord.Embed(title=author.name + ' ' + leaderemblem + str(curatoremblem))
 	embed.set_thumbnail(url=author.avatar_url)
 	if result:
 		embed.add_field(name="Thanks Received", value=result.get('points'), inline=True)
