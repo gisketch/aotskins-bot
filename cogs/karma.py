@@ -190,7 +190,7 @@ class Karma(commands.Cog):
 
 		db.clear_cache()
 		User = Query()
-		server = str(811586984879063050)
+		server = str(785530981548425266)
 		result = db.search(User.servers.all([server])) # doesnt work
 		leaderboard = {} # Prepares an empty dictionary.
 		for x in result: # For each entry in the database:
@@ -199,7 +199,7 @@ class Karma(commands.Cog):
 		i = 0
 
 		#Roles
-		thisguild = self.client.get_guild(811586984879063050)
+		thisguild = self.client.get_guild(785530981548425266)
 		
 		newbie_artist = discord.utils.get(thisguild.roles, name="Newbie Artist")
 		veteran_artist = discord.utils.get(thisguild.roles, name="Veteran Artist")
@@ -208,20 +208,54 @@ class Karma(commands.Cog):
 		veteran_designer = discord.utils.get(thisguild.roles, name="Veteran Designer")
 		senior_designer = discord.utils.get(thisguild.roles, name="Senior Designer")
 
-		staffchannel = discord.utils.get(thisguild.text_channels, name="staff-commands")
-
 		for key, value in leaderboard: # For each value in the new, sorted DB:
 			user = self.client.get_user(key)
 			if not user:
 				user = await self.client.fetch_user(key)
-				member = await thisguild.fetch_member(key)
-
-			member = discord.utils.get(thisguild.members, id=key)
-			print(member)
-			
-			if value >= 1000:
-				await staffchannel.send(content=str(user) + " reached 1000 thanks!!!!")
-
+			for x in thisguild.members:
+				if int(key) == int(x.id):
+					if value >= 20 and value < 100:
+						await x.add_roles(newbie_artist)
+						await x.remove_roles(veteran_artist)
+						await x.remove_roles(senior_artist)
+						await x.remove_roles(designer)
+						await x.remove_roles(veteran_designer)
+						await x.remove_roles(senior_designer)
+					elif value >= 100 and value < 200:
+						await x.add_roles(veteran_artist)
+						await x.remove_roles(newbie_artist)
+						await x.remove_roles(senior_artist)
+						await x.remove_roles(designer)
+						await x.remove_roles(veteran_designer)
+						await x.remove_roles(senior_designer)
+					elif value >= 200 and value < 300:
+						await x.add_roles(senior_artist)
+						await x.remove_roles(newbie_artist)
+						await x.remove_roles(veteran_artist)
+						await x.remove_roles(designer)
+						await x.remove_roles(veteran_designer)
+						await x.remove_roles(senior_designer)
+					elif value >= 300 and value < 400:
+						await x.add_roles(designer)
+						await x.remove_roles(newbie_artist)
+						await x.remove_roles(veteran_artist)
+						await x.remove_roles(senior_artist)
+						await x.remove_roles(veteran_designer)
+						await x.remove_roles(senior_designer)
+					elif value >= 400 and value < 600:
+						await x.add_roles(veteran_designer)
+						await x.remove_roles(newbie_artist)
+						await x.remove_roles(veteran_artist)
+						await x.remove_roles(senior_artist)
+						await x.remove_roles(designer)s
+						await x.remove_roles(senior_designer)
+					elif value >= 600:
+						await x.add_roles(senior_designer)
+						await x.remove_roles(newbie_artist)
+						await x.remove_roles(veteran_artist)
+						await x.remove_roles(senior_artist)
+						await x.remove_roles(designer)
+						await x.remove_roles(veteran_designer)
 			i = i+1
 	# ---------------------------------
 	#	    ?GPLB (GLOBAL POST LB)
