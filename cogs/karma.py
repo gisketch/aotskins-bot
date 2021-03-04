@@ -190,7 +190,7 @@ class Karma(commands.Cog):
 
 		db.clear_cache()
 		User = Query()
-		server = str(785530981548425266)
+		server = str(811586984879063050)
 		result = db.search(User.servers.all([server])) # doesnt work
 		leaderboard = {} # Prepares an empty dictionary.
 		for x in result: # For each entry in the database:
@@ -199,7 +199,7 @@ class Karma(commands.Cog):
 		i = 0
 
 		#Roles
-		thisguild = self.client.get_guild(785530981548425266)
+		thisguild = self.client.get_guild(811586984879063050)
 		
 		newbie_artist = discord.utils.get(thisguild.roles, name="Newbie Artist")
 		veteran_artist = discord.utils.get(thisguild.roles, name="Veteran Artist")
