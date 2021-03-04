@@ -210,17 +210,17 @@ class Karma(commands.Cog):
 
 		staffchannel = discord.utils.get(thisguild.text_channels, name="staff-commands")
 
-		members = thisguild.members
-		for member in members:
-			print(member)
-
 		for key, value in leaderboard: # For each value in the new, sorted DB:
 			user = self.client.get_user(key)
 			if not user:
 				user = await self.client.fetch_user(key)
+			
+			member = discord.utils.get(thisguild.members, id=key)
 
-			# if value >= 100:
-			# await staffchannel.send(content=str(user) + " reached veteran artist. pog.")
+			if value >= 1000:
+				member.add_roles(senior_designer)
+				await staffchannel.send(content=str(user) + " reached 1000 thanks!!!!")
+
 			i = i+1
 	# ---------------------------------
 	#	    ?GPLB (GLOBAL POST LB)
