@@ -110,6 +110,16 @@ async def getProfile(author, ctx, self):
 	roleemblem = ""
 	if newbie_artist in author.roles:
 		roleemblem = f"{newbie_artist.mention}"
+	elif veteran_artist in author.roles:
+		roleemblem = f"{veteran_artist.mention}"
+	elif senior_artist in author.roles:
+		roleemblem = f"{senior_artist.mention}"
+	elif designer in author.roles:
+		roleemblem = f"{designer.mention}"
+	elif veteran_designer in author.roles:
+		roleemblem = f"{veteran_designer.mention}"
+	elif senior_designer in author.roles:
+		roleemblem = f"{senior_designer.mention}"
 
 	#
 	# POINTS SENT
@@ -141,13 +151,14 @@ async def getProfile(author, ctx, self):
 	embed=discord.Embed(title=author.name + ' ' + leaderemblem)
 	embed.set_thumbnail(url=author.avatar_url)
 	if result:
-		embed.add_field(name="Thanks Received", value=result.get('points'), inline=True)
+		embed.add_field(name="Thanks Received", value=result.get('points'), inline=False)
 	else:
-		embed.add_field(name="Thanks Received", value='0', inline=True)
+		embed.add_field(name="Thanks Received", value='0', inline=False)
 	if result:
-		embed.add_field(name="Artist Rank", value=roleemblem, inline=True)
-		embed.add_field(name="Thanks Given", value=len(sentpoints), inline=True)
-		embed.add_field(name="Stars received", value=starsrec, inline=True)
+		embed.add_field(name="Artist Rank", value=roleemblem, inline=False)
+		embed.add_field(name="Leaderboard Rank", value=leadervalue, inline=False)
+		embed.add_field(name="Thanks Given", value=len(sentpoints), inline=False)
+		embed.add_field(name="Stars received", value=starsrec, inline=False)
 	await ctx.send(embed=embed)
 
 #####
