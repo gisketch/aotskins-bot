@@ -109,6 +109,7 @@ async def getProfile(author, ctx, self):
 	artist = discord.utils.get(thisguild.roles, name="Artist")
 
 	roleemblem = "None"
+	color = 0xffffff
 	if newbie_artist in author.roles:
 		roleemblem = f"{newbie_artist.mention}"
 	elif veteran_artist in author.roles:
@@ -163,7 +164,7 @@ async def getProfile(author, ctx, self):
 		embed.add_field(name="Leaderboard Rank", value=leadervalue, inline=False)
 		embed.add_field(name="Thanks Given", value=len(sentpoints), inline=False)
 		embed.add_field(name="Stars received", value=starsrec, inline=False)
-	await ctx.send(embed=embed)
+	await ctx.send(embed=embed, color=author.top_role.color)
 
 #####
 
