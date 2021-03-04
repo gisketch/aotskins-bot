@@ -214,7 +214,7 @@ class Karma(commands.Cog):
 			if not user:
 				user = await self.client.fetch_user(key)
 
-			member = await thisguild.get_member(key)
+			member = thisguild.get_member(key)
 
 			if value >= 100:
 				await member.add_roles(veteran_artist)
