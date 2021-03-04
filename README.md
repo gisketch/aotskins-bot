@@ -7,3 +7,5 @@ The bot adds many new features that's unique to the server.
 - Autoroles (when you reach a certain number of thanks)
 - Auto Update Leaderboard
 - Editing thanks for Admins
+
+Join the discord server: https://discord.gg/NJRZTddmbd
