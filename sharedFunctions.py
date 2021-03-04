@@ -153,7 +153,6 @@ async def getProfile(author, ctx, self):
 	#
 
 	embed=discord.Embed(title=author.name + ' ' + leaderemblem)
-	print(leaderemblem)
 	embed.set_thumbnail(url=author.avatar_url)
 	if result:
 		embed.add_field(name="Thanks Received", value=result.get('points'), inline=False)
@@ -164,7 +163,8 @@ async def getProfile(author, ctx, self):
 		embed.add_field(name="Leaderboard Rank", value=leadervalue, inline=False)
 		embed.add_field(name="Thanks Given", value=len(sentpoints), inline=False)
 		embed.add_field(name="Stars received", value=starsrec, inline=False)
-	await ctx.send(embed=embed, color=author.top_role.color)
+	ember.colour = author.top_role.colour
+	await ctx.send(embed=embed)
 
 #####
 
