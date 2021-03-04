@@ -198,15 +198,15 @@ class Karma(commands.Cog):
 		i = 0
 
 		#Roles
-
-		newbie_artist = self.client.get_role(811717322468884529)
-		veteran_artist = self.client.get_role(811717092008394814)
-		senior_artist = self.client.get_role(811717591612653608)
-		designer = self.client.get_role(811718213817073664)
-		veteran_designer = self.client.get_role(811718395577368597)
-		senior_designer = self.client.get_role(811718641107730462)
-
 		thisguild = self.client.get_guild(811586984879063050)
+		
+		newbie_artist = thisguild.get_role(811717322468884529)
+		veteran_artist = thisguild.get_role(811717092008394814)
+		senior_artist = thisguild.get_role(811717591612653608)
+		designer = thisguild.get_role(811718213817073664)
+		veteran_designer = thisguild.get_role(811718395577368597)
+		senior_designer = thisguild.get_role(811718641107730462)
+
 		staffchannel = discord.utils.get(thisguild.text_channels, name="staff-commands")
 
 		for key, value in leaderboard: # For each value in the new, sorted DB:
