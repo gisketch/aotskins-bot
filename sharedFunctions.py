@@ -107,9 +107,9 @@ async def getProfile(author, ctx, self):
 	veteran_designer = discord.utils.get(thisguild.roles, name="Veteran Designer")
 	senior_designer = discord.utils.get(thisguild.roles, name="Senior Designer")
 
-	curatoremblem = ""
+	roleemblem = ""
 	if newbie_artist in author.roles:
-		curatoremblem = f"{newbie_artist.mention}"
+		roleemblem = f"{newbie_artist.mention}"
 
 	#
 	# POINTS SENT
@@ -138,14 +138,14 @@ async def getProfile(author, ctx, self):
 	# SEND THE EMBED
 	#
 
-	embed=discord.Embed(title=author.name + ' ' + leaderemblem + str(curatoremblem))
+	embed=discord.Embed(title=author.name + ' ' + leaderemblem)
 	embed.set_thumbnail(url=author.avatar_url)
 	if result:
 		embed.add_field(name="Thanks Received", value=result.get('points'), inline=True)
 	else:
 		embed.add_field(name="Thanks Received", value='0', inline=True)
 	if result:
-		embed.add_field(name="Rank", value=leadervalue, inline=True)
+		embed.add_field(name="Artist Rank", value=roleemblem, inline=True)
 		embed.add_field(name="Thanks Given", value=len(sentpoints), inline=True)
 		embed.add_field(name="Stars received", value=starsrec, inline=True)
 	await ctx.send(embed=embed)
