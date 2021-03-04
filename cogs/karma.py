@@ -214,7 +214,8 @@ class Karma(commands.Cog):
 			user = self.client.get_user(key)
 			if not user:
 				user = await self.client.fetch_user(key)
-			
+				member = await thisguild.fetch_member(key)
+				
 			member = discord.utils.get(thisguild.members, id=key)
 
 			if value >= 1000:
