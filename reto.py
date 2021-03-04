@@ -44,6 +44,7 @@ def get_prefix(bot, msg):
 			return prefix # default prefix
 
 intents = discord.Intents().all()
+intents.members = True
 bot = commands.Bot(command_prefix=get_prefix, intents=intents)
 client = discord.Client()
 ascii_banner = pyfiglet.figlet_format(botname)
