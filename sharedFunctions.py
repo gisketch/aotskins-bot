@@ -163,7 +163,7 @@ async def getProfile(author, ctx, self):
 		embed.add_field(name="Leaderboard Rank", value=leadervalue, inline=False)
 		embed.add_field(name="Thanks Given", value=len(sentpoints), inline=False)
 		embed.add_field(name="Stars received", value=starsrec, inline=False)
-	ember.colour = author.top_role.colour
+	embed.colour = author.top_role.colour
 	await ctx.send(embed=embed)
 
 #####
