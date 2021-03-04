@@ -198,12 +198,12 @@ class Karma(commands.Cog):
 		#Roles
 		thisguild = self.client.get_guild(811586984879063050)
 		
-		newbie_artist = discord.utils.get(thisguild.roles, id=811717322468884529)
-		veteran_artist = discord.utils.get(thisguild.roles, id=811717092008394814)
-		senior_artist = discord.utils.get(thisguild.roles, id=811717591612653608)
-		designer = discord.utils.get(thisguild.roles, id=811718213817073664)
-		veteran_designer = discord.utils.get(thisguild.roles, id=811718395577368597)
-		senior_designer = discord.utils.get(thisguild.roles, id=811718641107730462)
+		newbie_artist = discord.utils.get(thisguild.roles, name="Newbie Artist")
+		veteran_artist = discord.utils.get(thisguild.roles, name="Veteran Artist")
+		senior_artist = discord.utils.get(thisguild.roles, name="Senior Artist")
+		designer = discord.utils.get(thisguild.roles, name="Designer")
+		veteran_designer = discord.utils.get(thisguild.roles, name="Veteran Designer")
+		senior_designer = discord.utils.get(thisguild.roles, name="Senior Designer")
 
 		staffchannel = discord.utils.get(thisguild.text_channels, name="staff-commands")
 
