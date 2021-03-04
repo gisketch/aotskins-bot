@@ -207,6 +207,7 @@ class Karma(commands.Cog):
 		designer = discord.utils.get(thisguild.roles, name="Designer")
 		veteran_designer = discord.utils.get(thisguild.roles, name="Veteran Designer")
 		senior_designer = discord.utils.get(thisguild.roles, name="Senior Designer")
+		artist = discord.utils.get(thisguild.roles, name="Artist")
 
 		for key, value in leaderboard: # For each value in the new, sorted DB:
 			user = self.client.get_user(key)
@@ -221,6 +222,7 @@ class Karma(commands.Cog):
 						await x.remove_roles(designer)
 						await x.remove_roles(veteran_designer)
 						await x.remove_roles(senior_designer)
+						await x.remove_roles(artist)
 					elif value >= 100 and value < 200:
 						await x.add_roles(veteran_artist)
 						await x.remove_roles(newbie_artist)
@@ -228,6 +230,7 @@ class Karma(commands.Cog):
 						await x.remove_roles(designer)
 						await x.remove_roles(veteran_designer)
 						await x.remove_roles(senior_designer)
+						await x.remove_roles(artist)
 					elif value >= 200 and value < 300:
 						await x.add_roles(senior_artist)
 						await x.remove_roles(newbie_artist)
@@ -235,6 +238,7 @@ class Karma(commands.Cog):
 						await x.remove_roles(designer)
 						await x.remove_roles(veteran_designer)
 						await x.remove_roles(senior_designer)
+						await x.remove_roles(artist)
 					elif value >= 300 and value < 400:
 						await x.add_roles(designer)
 						await x.remove_roles(newbie_artist)
@@ -242,6 +246,7 @@ class Karma(commands.Cog):
 						await x.remove_roles(senior_artist)
 						await x.remove_roles(veteran_designer)
 						await x.remove_roles(senior_designer)
+						await x.remove_roles(artist)
 					elif value >= 400 and value < 600:
 						await x.add_roles(veteran_designer)
 						await x.remove_roles(newbie_artist)
@@ -249,6 +254,7 @@ class Karma(commands.Cog):
 						await x.remove_roles(senior_artist)
 						await x.remove_roles(designer)
 						await x.remove_roles(senior_designer)
+						await x.remove_roles(artist)
 					elif value >= 600:
 						await x.add_roles(senior_designer)
 						await x.remove_roles(newbie_artist)
@@ -256,6 +262,7 @@ class Karma(commands.Cog):
 						await x.remove_roles(senior_artist)
 						await x.remove_roles(designer)
 						await x.remove_roles(veteran_designer)
+						await x.remove_roles(artist)
 			i = i+1
 	# ---------------------------------
 	#	    ?GPLB (GLOBAL POST LB)

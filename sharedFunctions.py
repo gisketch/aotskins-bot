@@ -106,8 +106,9 @@ async def getProfile(author, ctx, self):
 	designer = discord.utils.get(thisguild.roles, name="Designer")
 	veteran_designer = discord.utils.get(thisguild.roles, name="Veteran Designer")
 	senior_designer = discord.utils.get(thisguild.roles, name="Senior Designer")
+	artist = discord.utils.get(thisguild.roles, name="Artist")
 
-	roleemblem = " "
+	roleemblem = "None"
 	if newbie_artist in author.roles:
 		roleemblem = f"{newbie_artist.mention}"
 	elif veteran_artist in author.roles:
@@ -120,6 +121,8 @@ async def getProfile(author, ctx, self):
 		roleemblem = f"{veteran_designer.mention}"
 	elif senior_designer in author.roles:
 		roleemblem = f"{senior_designer.mention}"
+	elif artist in author.roles:
+		roleemblem = f"{artist.mention}"
 
 	#
 	# POINTS SENT
