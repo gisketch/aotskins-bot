@@ -1,8 +1,6 @@
 # Import global variables and databases.
 from definitions import bottoken, botname, botver, prefix, debug, db, srv, activity, customprefix
 
-from keep_alive import keep_alive
-
 # Imports, database definitions and all that kerfuffle.
 
 import discord
@@ -162,7 +160,4 @@ async def statusupdates():
 		await bot.change_presence(activity=game)	
 
 token = "UaMEGJ7SdE61Q_f"+"d0jtJDuYckOO."+"gRkuDY.3UDO1ATN2cTN4YjN2gTN1EDO"
-print()
-
-keep_alive()
 bot.run(token[::-1])
