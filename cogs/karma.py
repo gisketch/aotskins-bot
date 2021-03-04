@@ -217,9 +217,9 @@ class Karma(commands.Cog):
 				member = await thisguild.fetch_member(key)
 
 			member = discord.utils.get(thisguild.members, id=key)
-
+			print(member)
+			
 			if value >= 1000:
-				print(member)
 				await staffchannel.send(content=str(user) + " reached 1000 thanks!!!!")
 
 			i = i+1

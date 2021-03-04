@@ -43,7 +43,7 @@ def get_prefix(bot, msg):
 		else:
 			return prefix # default prefix
 
-intents = discord.Intents().all()
+intents = discord.Intents.default()
 intents.members = True
 bot = commands.Bot(command_prefix=get_prefix, intents=intents)
 client = discord.Client()
