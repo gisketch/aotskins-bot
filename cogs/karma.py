@@ -189,7 +189,7 @@ class Karma(commands.Cog):
 		"""Autoroles."""
 		db.clear_cache()
 		User = Query()
-		server = str(785530981548425266)
+		server = str(811586984879063050)
 		result = db.search(User.servers.all([server])) # doesnt work
 		leaderboard = {} # Prepares an empty dictionary.
 		for x in result: # For each entry in the database:
@@ -197,7 +197,7 @@ class Karma(commands.Cog):
 		leaderboard = sorted(leaderboard.items(), key = lambda x : x[1], reverse=True) # Sort this database by amount of points.
 		i = 0
 
-		thisguild = self.client.get_guild(785530981548425266)
+		thisguild = self.client.get_guild(811586984879063050)
 		updatechannel = discord.utils.get(thisguild.text_channels, name="bot-commands")
 
 		#Roles
