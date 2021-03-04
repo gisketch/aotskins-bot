@@ -197,10 +197,6 @@ class Karma(commands.Cog):
 		leaderboard = sorted(leaderboard.items(), key = lambda x : x[1], reverse=True) # Sort this database by amount of points.
 		i = 0
 
-		thisguild = self.client.get_guild(811586984879063050)
-		updatechannel = discord.utils.get(thisguild.text_channels, name="bot-commands")
-		staffchannel = discord.utils.get(thisguild.text_channels, name="staff-commands")
-
 		#Roles
 
 		newbie_artist = self.client.get_role(811717322468884529)
@@ -210,6 +206,8 @@ class Karma(commands.Cog):
 		veteran_designer = self.client.get_role(811718395577368597)
 		senior_designer = self.client.get_role(811718641107730462)
 
+		thisguild = self.client.get_guild(811586984879063050)
+		staffchannel = discord.utils.get(thisguild.text_channels, name="staff-commands")
 
 		for key, value in leaderboard: # For each value in the new, sorted DB:
 			user = self.client.get_user(key)
