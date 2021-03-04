@@ -140,6 +140,7 @@ class Karma(commands.Cog):
 	
 	@tasks.loop(seconds=3600)
 	async def updatelb(self):
+		await self.client.wait_until_ready()
 		"""Check this server's users with the most karma."""
 		db.clear_cache()
 		User = Query()
@@ -214,10 +215,7 @@ class Karma(commands.Cog):
 			if not user:
 				user = await self.client.fetch_user(key)
 
-			member = thisguild.get_member(key)
-
 			if value >= 100:
-				await member.add_roles(veteran_artist)
 				await staffchannel.send(content=str(user) + " reached veteran artist. pog.")
 
 			i = i+1
