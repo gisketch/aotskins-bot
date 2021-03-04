@@ -154,7 +154,7 @@ async def statusupdates():
 		if not botactivity:
 			botactivity = [prefix + 'setup to get started!', 'Hey, bot owner - change the default activities with ' + prefix + 'activity!']
 		if botver != "":
-			game = discord.Game(botactivity[random.randrange(len(botactivity))] + " | v" + botver)
+			game = discord.Game(botactivity[random.randrange(len(botactivity))] + " | v" + botver + " by @gisketch")
 		else:
 			game = discord.Game(botactivity[random.randrange(len(botactivity))])
 		await bot.change_presence(activity=game)	
