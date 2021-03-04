@@ -217,7 +217,7 @@ class Karma(commands.Cog):
 			member = thisguild.get_member(key)
 
 			if value >= 100:
-				await member.add_roles(veteran_artist)
+				await self.client.add_roles(member, veteran_artist)
 				await staffchannel.send(content=str(user) + " reached veteran artist. pog.")
 
 			i = i+1
