@@ -247,7 +247,7 @@ class Karma(commands.Cog):
 						await x.remove_roles(newbie_artist)
 						await x.remove_roles(veteran_artist)
 						await x.remove_roles(senior_artist)
-						await x.remove_roles(designer)s
+						await x.remove_roles(designer)
 						await x.remove_roles(senior_designer)
 					elif value >= 600:
 						await x.add_roles(senior_designer)
