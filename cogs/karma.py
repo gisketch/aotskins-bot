@@ -222,7 +222,7 @@ class Karma(commands.Cog):
 						await x.remove_roles(designer)
 						await x.remove_roles(veteran_designer)
 						await x.remove_roles(senior_designer)
-						await x.remove_roles(artist)
+						await x.add_roles(artist)
 					elif value >= 100 and value < 200:
 						await x.add_roles(veteran_artist)
 						await x.remove_roles(newbie_artist)
@@ -230,7 +230,7 @@ class Karma(commands.Cog):
 						await x.remove_roles(designer)
 						await x.remove_roles(veteran_designer)
 						await x.remove_roles(senior_designer)
-						await x.remove_roles(artist)
+						await x.add_roles(artist)
 					elif value >= 200 and value < 400:
 						await x.add_roles(senior_artist)
 						await x.remove_roles(newbie_artist)
@@ -238,7 +238,7 @@ class Karma(commands.Cog):
 						await x.remove_roles(designer)
 						await x.remove_roles(veteran_designer)
 						await x.remove_roles(senior_designer)
-						await x.remove_roles(artist)
+						await x.add_roles(artist)
 					elif value >= 400 and value < 700:
 						await x.add_roles(designer)
 						await x.remove_roles(newbie_artist)
@@ -246,7 +246,7 @@ class Karma(commands.Cog):
 						await x.remove_roles(senior_artist)
 						await x.remove_roles(veteran_designer)
 						await x.remove_roles(senior_designer)
-						await x.remove_roles(artist)
+						await x.add_roles(artist)
 					elif value >= 700 and value < 1000:
 						await x.add_roles(veteran_designer)
 						await x.remove_roles(newbie_artist)
@@ -254,7 +254,7 @@ class Karma(commands.Cog):
 						await x.remove_roles(senior_artist)
 						await x.remove_roles(designer)
 						await x.remove_roles(senior_designer)
-						await x.remove_roles(artist)
+						await x.add_roles(artist)
 					elif value >= 1000:
 						await x.add_roles(senior_designer)
 						await x.remove_roles(newbie_artist)
@@ -262,7 +262,7 @@ class Karma(commands.Cog):
 						await x.remove_roles(senior_artist)
 						await x.remove_roles(designer)
 						await x.remove_roles(veteran_designer)
-						await x.remove_roles(artist)
+						await x.add_roles(artist)
 			i = i+1
 	# ---------------------------------
 	#	    ?GPLB (GLOBAL POST LB)
