@@ -177,7 +177,6 @@ class Karma(commands.Cog):
 		staffchannel = discord.utils.get(thisguild.text_channels, name="staff-commands")
 
 		glb = await lbMessage.edit(embed=embed)
-		await staffchannel.send(content=f"<#815956314798424114> leaderboard updated")
 
 	# --------------------------
 	#	    ?AUTOROLES
